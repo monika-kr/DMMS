@@ -23,7 +23,7 @@ void setup()  // starting point for a program
      
      for(int inputNum=0; inputNum<2; inputNum= inputNum+1)
      {
-     net = net + AND [0][inputNum];
+     net = net + AND [0][inputNum]* weights[inputNum];
      }
      
      print("activation = " + net);
