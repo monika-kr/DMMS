@@ -1,0 +1,39 @@
+//training set
+float [][] AND=  { {0,0,0},
+                   {0,1,0},
+                   {1,0,0},
+                   {1,1,1} };
+
+float [][] OR=  { {0,0,0},
+                   {0,1,1},
+                   {1,0,1},
+                   {1,1,0} };
+
+float [][] trainSet = AND;
+
+float[] weights  = { 0.1,  0.5,  0.4};
+// int is a whole number
+
+void setup()  // starting point for a program
+
+{
+     float net = 0.0;   // activation of neuron
+  
+   //  net = AND [0][0] * weights[0] + AND[0][1] * weights[1];   does what line 24-26 does
+     
+     for(int inputNum=0; inputNum<2; inputNum= inputNum+1)
+     {
+     net = net + AND [0][inputNum];
+     }
+     
+     print("activation = " + net);
+     
+}
+
+void display(float [] vector)
+{
+    for(int attribute=0; attribute<vector.length; attribute++)
+    {  print(vector[attribute] +","); }
+      
+     println();
+}
