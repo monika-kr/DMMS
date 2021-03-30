@@ -1,0 +1,103 @@
+//training set
+float [][] AND=  { {0,0,0},
+                   {0,1,0},
+                   {1,0,0},
+                   {1,1,1} };
+
+float [][] OR=  { {0,0,0},
+                   {0,1,1},
+                   {1,0,1},
+                   {1,1,0} };
+
+float [][] trainSet = AND;
+
+float[] weights  = { 1.0, 1.0 ,  1.5};
+// int is a whole number
+
+int BIAS = 2;
+int TARGET = 2;
+
+void setup()  // starting point for a program
+{
+     float net = 0.0;   // activation of neuron
+     float neuronOutput = 0.0;
+     int errors =0;
+     
+     size(1000,1000);
+     
+     for (int instanceNum=0; instanceNum < BIAS; instanceNum++)
+     {
+     net = activation(trainSet[instanceNum], weights);
+     neuronOutput = threshold (net);
+     if (neuronOutput != trainSet[instanceNum][TARGET])
+     {
+      errors = errors +1;
+     }
+    
+     }
+     
+     print(" errors = " + errors );
+     print(" out = " + neuronOutput );
+     plot(weights);
+     
+  
+   //  net = AND [0][0] * weights[0] + AND[0][1] * weights[1];   does what line 24-26 does
+     
+     //for(int inputNum=0; inputNum<2; inputNum= inputNum+1)
+  //   {
+    // net = net + AND [0][inputNum]* weights[inputNum];
+   //  }
+     
+   //  net = net + -1.0 * weights[BIAS]; //add on bias weight
+     
+     print(" activation = " + net);
+}
+
+float activation(float [] inputs, float [] weights)
+{
+  float net = 0;
+  for(int inputNum=0; inputNum < 2; inputNum = inputNum+1)
+  {
+    net =  net + inputs[inputNum] * weights[inputNum];
+  }
+  net = net+  -1 * weights[BIAS];  //add bias weight
+  return net;
+}
+
+// calculate neuron output based on the activation
+float threshold( float net)
+{
+   if ( net > 0 )
+     return 1.0;
+   else 
+     return 0.0;
+   
+}
+
+void display(float [] vector)
+{
+    for(int attribute=0; attribute<vector.length; attribute++)
+    {  print(vector[attribute] +","); }
+      
+     println();
+}
+
+
+void plot(float [] weights) //plot the decision boundary of a neuron with this weight vector
+{
+  float net, out;
+  for(int x = 0; x<=100; x++)
+  {
+    for(int y=0; y<=100; y++)
+    {
+       float [] inputs = {(float) x/100, (float) y/100};
+       net = activation(inputs, weights);
+       out = threshold(net);
+       if (out>0)
+         fill(255,0,0); //red
+       else
+         fill(0,0,255); //blue
+//invert y axis, graphics y increases down screen from topLeft
+       ellipse(x*10,1000-y*10,10,10);    }
+  }
+} 
