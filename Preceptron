@@ -26,6 +26,8 @@ void setup()  // starting point for a program
      net = net + AND [0][inputNum]* weights[inputNum];
      }
      
+     net = net + -1.0 * weights[2]; //add on bias weight
+     
      print("activation = " + net);
      
 }
