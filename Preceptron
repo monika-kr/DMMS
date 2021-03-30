@@ -13,6 +13,7 @@ float [][] trainSet = AND;
 
 float[] weights  = { 0.1,  0.5,  0.4};
 // int is a whole number
+int BIAS = 2;
 
 void setup()  // starting point for a program
 
@@ -26,7 +27,7 @@ void setup()  // starting point for a program
      net = net + AND [0][inputNum]* weights[inputNum];
      }
      
-     net = net + -1.0 * weights[2]; //add on bias weight
+     net = net + -1.0 * weights[BIAS]; //add on bias weight
      
      print("activation = " + net);
      
